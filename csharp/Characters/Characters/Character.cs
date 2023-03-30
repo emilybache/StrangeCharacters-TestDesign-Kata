@@ -42,4 +42,22 @@ public class Character
     {
         return $"Character({FirstName}, {LastName}, isMonster:{IsMonster})";
     }
+
+    protected bool Equals(Character other)
+    {
+        return FirstName == other.FirstName;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != this.GetType()) return false;
+        return Equals((Character)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return FirstName.GetHashCode();
+    }
 }

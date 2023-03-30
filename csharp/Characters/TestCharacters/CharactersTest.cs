@@ -67,6 +67,14 @@ public class CharactersTest
         var characters = finder.FindFamilyByLastName("Wheeler");
         Assert.AreEqual(3, characters.Count);
     }
+    
+    [TestCase]
+    public void FindElevenByLastName()
+    {
+        var finder = new CharacterFinder(allTestData());
+        var characters = finder.FindFamilyByLastName(null);
+        Assert.AreEqual(1, characters.Count);
+    }
 
     [TestCase]
     public void FindParent()
@@ -83,7 +91,7 @@ public class CharactersTest
     {
         var finder = new CharacterFinder(allTestData());
         var monsters = finder.FindMonsters();
-        Assert.AreEqual(3, monsters.Count);
+        Assert.AreEqual(new Character("Mindflayer", null, isMonster:true), monsters[0]);
     }
 
     [TestCase]

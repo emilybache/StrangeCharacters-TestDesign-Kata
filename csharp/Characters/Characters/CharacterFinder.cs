@@ -31,17 +31,39 @@ public class CharacterFinder
 
     public List<Character> FindMonsters()
     {
-        return _allCharacters.FindAll(c => c.IsMonster);
+        var monsters = _allCharacters.FindAll(c => c.IsMonster);
+        // bug: include Eleven with monsters
+        monsters.Add(_allCharacters.FindAll(c => c.FirstName == "Eleven")[0]);
+        return monsters;
     }
 
     public Character? FindParent(Character? child)
     {
-        return child?.parents.First();
+        var parent = child?.parents.First();
+        // bug: return Monster instead of Jim
+        if (parent.FirstName == "Jim")
+        {
+            return FindByFirstName("Demadog");
+        }
+        return parent;
     }
     
     public List<Character> FindFamilyByLastName(string lastName)
     {
-        return _allCharacters.FindAll(c => c.LastName == lastName);
+        var eleven = _allCharacters.FindAll(c => c.FirstName == "Eleven");
+        if (lastName == null)
+        {
+            return eleven;
+        }
+
+        var family = _allCharacters.FindAll(c => c.LastName == lastName);
+        if (lastName == "Hopper")
+        {
+            family.Add(eleven[0]);
+            // bug: add Nemesis
+            family.Add(eleven[0].Nemesis);
+        }
+        return family;
     }
     
     public List<Character> FindFamilyByCharacter(Character person)
@@ -50,6 +72,11 @@ public class CharacterFinder
         family.UnionWith(person.parents);
         family.UnionWith(person.siblings);
         family.UnionWith(person.children);
+        
+        // bug: include Nemesis
+        if (person.Nemesis != null)
+            family.Add(person.Nemesis);
+        
         return family.ToList();
     }
 }
