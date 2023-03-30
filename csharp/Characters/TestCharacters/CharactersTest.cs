@@ -29,10 +29,9 @@ public class CharactersTest
         karen.AddChild(nancy);
         karen.AddChild(mike);
         
-        eleven.AddNemesis(demagorgon);
-        will.AddNemesis(demagorgon);
-        will.AddNemesis(mindflayer);
-        dustin.AddNemesis(demadog);
+        eleven.SetNemesis(demagorgon);
+        will.SetNemesis(mindflayer);
+        dustin.SetNemesis(demadog);
 
         return new List<Character>()
         {

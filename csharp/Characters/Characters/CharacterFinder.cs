@@ -11,10 +11,17 @@ public class CharacterFinder
 
     public Character? FindByFirstName(string name)
     {
+        
         var found = _allCharacters.FindAll(c => c.FirstName == name);
         if (found.Count > 0)
         {
-            return found[0];
+            var character = found[0];
+            // bug: return the nemesis instead of the character
+            if (character.Nemesis != null)
+            {
+                return character.Nemesis;
+            }
+            return character;
         }
         else
         {

@@ -5,10 +5,12 @@ public class Character
     public string FirstName { get; }
     public string? LastName { get; }
     public bool IsMonster { get; }
+
+    public Character? Nemesis { get; private set; }
+
     public HashSet<Character> children = new();
     public HashSet<Character> siblings = new();
     public HashSet<Character> parents = new();
-    public HashSet<Character> nemeses = new();
 
     public Character(string firstName, string? lastName, bool isMonster=false)
     {
@@ -31,8 +33,13 @@ public class Character
         }
     }
 
-    public void AddNemesis(Character monster)
+    public void SetNemesis(Character monster)
     {
-        nemeses.Add(monster);
+        this.Nemesis = monster;
+    }
+
+    public override string ToString()
+    {
+        return $"Character({FirstName}, {LastName}, isMonster:{IsMonster})";
     }
 }
