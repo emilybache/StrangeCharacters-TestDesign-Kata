@@ -19,18 +19,16 @@ public class Character
 
     public void AddChild(Character child)
     {
-        foreach (var character in children)
-        {
-            child.AddSibling(character);
-        }
-        
         children.Add(child);
         child.parents.Add(this);
-    }
-
-    private void AddSibling(Character sibling)
-    {
-        siblings.Add(sibling);
+        foreach (var character in children)
+        {
+            if (child.FirstName != character.FirstName)
+            {
+                child.siblings.Add(character);
+                character.siblings.Add(child);
+            }
+        }
     }
 
     public void AddNemesis(Character monster)

@@ -30,6 +30,7 @@ public class CharactersTest
         karen.AddChild(mike);
         
         eleven.AddNemesis(demagorgon);
+        will.AddNemesis(demagorgon);
         will.AddNemesis(mindflayer);
         dustin.AddNemesis(demadog);
 
@@ -58,5 +59,40 @@ public class CharactersTest
         var finder = new CharacterFinder(allTestData());
         var character = finder.FindByFirstName("Jim");
         Assert.AreEqual("Jim", character?.FirstName);
+    }
+    
+    [TestCase]
+    public void FindCharacterByLastName()
+    {
+        var finder = new CharacterFinder(allTestData());
+        var characters = finder.FindFamilyByLastName("Wheeler");
+        Assert.AreEqual(3, characters.Count);
+    }
+
+    [TestCase]
+    public void FindParent()
+    {
+        var finder = new CharacterFinder(allTestData());
+        var nancy = finder.FindByFirstName("Nancy");
+        Assert.NotNull(nancy);
+        var parent = finder.FindParent(nancy);
+        Assert.AreEqual("Karen", parent?.FirstName);
+    }
+    
+    [TestCase]
+    public void FindMonsters()
+    {
+        var finder = new CharacterFinder(allTestData());
+        var monsters = finder.FindMonsters();
+        Assert.AreEqual(3, monsters.Count);
+    }
+
+    [TestCase]
+    public void FindFamily()
+    {
+        var finder = new CharacterFinder(allTestData());
+        var family = finder.FindFamilyByCharacter(finder.FindByFirstName("Jim"));
+        Assert.AreEqual(1, family.Count);
+        Assert.AreEqual("Eleven", family.First().FirstName);
     }
 }

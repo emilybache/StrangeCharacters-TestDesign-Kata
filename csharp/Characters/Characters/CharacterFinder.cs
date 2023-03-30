@@ -21,4 +21,28 @@ public class CharacterFinder
             return null;
         }
     }
+
+    public List<Character> FindMonsters()
+    {
+        return _allCharacters.FindAll(c => c.IsMonster);
+    }
+
+    public Character? FindParent(Character? child)
+    {
+        return child?.parents.First();
+    }
+    
+    public List<Character> FindFamilyByLastName(string lastName)
+    {
+        return _allCharacters.FindAll(c => c.LastName == lastName);
+    }
+    
+    public List<Character> FindFamilyByCharacter(Character person)
+    {
+        var family = new HashSet<Character>();
+        family.UnionWith(person.parents);
+        family.UnionWith(person.siblings);
+        family.UnionWith(person.children);
+        return family.ToList();
+    }
 }
