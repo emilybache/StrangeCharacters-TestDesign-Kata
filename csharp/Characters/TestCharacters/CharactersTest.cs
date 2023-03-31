@@ -11,7 +11,7 @@ public class CharactersTest
         var joyce = new Character("Joyce", "Byers");
         var jim = new Character("Jim", "Hopper");
         var mike = new Character("Mike", "Wheeler");
-        var eleven = new Character("Eleven", null);
+        var eleven = new Character("Eleven");
         var dustin = new Character("Dustin", "Henderson");
         var lucas = new Character("Lucas", "Sinclair");
         var nancy = new Character("Nancy", "Wheeler");
@@ -19,9 +19,9 @@ public class CharactersTest
         var will = new Character("Will", "Byers");
         var karen = new Character("Karen", "Wheeler");
         var steve = new Character("Steve", "Harrington");
-        var mindflayer = new Character("Mindflayer", null, isMonster:true);
-        var demagorgon = new Character("Demagorgon", null, isMonster:true);
-        var demadog = new Character("Demadog", null, isMonster:true);
+        var mindflayer = new Character("Mindflayer", isMonster:true);
+        var demagorgon = new Character("Demagorgon", isMonster:true);
+        var demadog = new Character("Demadog", isMonster:true);
         
         joyce.AddChild(jonathan);
         joyce.AddChild(will);
@@ -59,30 +59,21 @@ public class CharactersTest
         var character = finder.FindByFirstName("Jim");
         Assert.AreEqual("Jim", character?.FirstName);
     }
-    
-    [TestCase]
-    public void FindCharacterByLastName()
-    {
-        var finder = new CharacterFinder(allTestData());
-        var characters = finder.FindFamilyByLastName("Wheeler");
-        Assert.AreEqual(3, characters.Count);
-    }
-    
+
     [TestCase]
     public void FindElevenByLastName()
     {
         var finder = new CharacterFinder(allTestData());
-        var characters = finder.FindFamilyByLastName(null);
-        Assert.AreEqual(1, characters.Count);
+        string? nullString = null;
+        var characters = finder.FindFamilyByLastName(nullString);
+        CollectionAssert.Contains(characters, new Character("Eleven"));
     }
 
     [TestCase]
     public void FindParent()
     {
         var finder = new CharacterFinder(allTestData());
-        var nancy = finder.FindByFirstName("Nancy");
-        Assert.NotNull(nancy);
-        var parent = finder.FindParent(nancy);
+        var parent = finder.FindParent("Nancy");
         Assert.AreEqual("Karen", parent?.FirstName);
     }
     
@@ -91,14 +82,14 @@ public class CharactersTest
     {
         var finder = new CharacterFinder(allTestData());
         var monsters = finder.FindMonsters();
-        Assert.AreEqual(new Character("Mindflayer", null, isMonster:true), monsters[0]);
+        CollectionAssert.Contains(monsters, new Character("Mindflayer", null, isMonster:true));
     }
 
     [TestCase]
     public void FindFamily()
     {
         var finder = new CharacterFinder(allTestData());
-        var family = finder.FindFamilyByCharacter(finder.FindByFirstName("Jim"));
+        var family = finder.FindFamilyByCharacter("Jim");
         Assert.AreEqual(1, family.Count);
         Assert.AreEqual("Eleven", family.First().FirstName);
     }

@@ -28,55 +28,75 @@ public class CharacterFinder
             return null;
         }
     }
-
-    public List<Character> FindMonsters()
+    
+    public Character? FindParent(string firstName)
     {
-        var monsters = _allCharacters.FindAll(c => c.IsMonster);
-        // bug: include Eleven with monsters
-        monsters.Add(_allCharacters.FindAll(c => c.FirstName == "Eleven")[0]);
-        return monsters;
-    }
-
-    public Character? FindParent(Character? child)
-    {
+        var child = FindByFirstName(firstName);
+        if (child == null)
+        {
+            return null;
+        }
         var parent = child?.parents.First();
+        
         // bug: return Monster instead of Jim
-        if (parent.FirstName == "Jim")
+        if (parent?.FirstName == "Jim")
         {
             return FindByFirstName("Demadog");
         }
         return parent;
     }
-    
-    public List<Character> FindFamilyByLastName(string lastName)
-    {
-        var eleven = _allCharacters.FindAll(c => c.FirstName == "Eleven");
-        if (lastName == null)
-        {
-            return eleven;
-        }
 
-        var family = _allCharacters.FindAll(c => c.LastName == lastName);
-        if (lastName == "Hopper")
-        {
-            family.Add(eleven[0]);
-            // bug: add Nemesis
-            family.Add(eleven[0].Nemesis);
-        }
-        return family;
+    public List<Character> FindMonsters()
+    {
+        // bug: include all characters with null last name with monsters
+        // var monsters = _allCharacters.FindAll(c => c.IsMonster);
+        var monsters = _allCharacters.FindAll(c => c.LastName == null);
+        return monsters;
     }
     
-    public List<Character> FindFamilyByCharacter(Character person)
+    public List<Character> FindFamilyByCharacter(string firstName)
     {
+        var person = FindByFirstName(firstName);
+        if (person == null)
+        {
+            return new List<Character>();
+        }
         var family = new HashSet<Character>();
         family.UnionWith(person.parents);
-        family.UnionWith(person.siblings);
         family.UnionWith(person.children);
-        
+        // bug: exclude siblings
+        //family.UnionWith(person.siblings);
+
         // bug: include Nemesis
         if (person.Nemesis != null)
             family.Add(person.Nemesis);
         
         return family.ToList();
     }
+    
+    public List<Character> FindFamilyByLastName(string? lastName)
+    {
+        var family = _allCharacters.FindAll(c => c.LastName == lastName);
+
+        // bug: monsters are being returned, who are not family with anyone
+        //if (lastName == null)
+        //{
+        //    var familyWithoutMonsters = family.FindAll(c => !c.IsMonster);
+        //    return familyWithoutMonsters.ToList();
+        //}
+        
+        // bug: add all family's Nemeses
+        var nemeses = new List<Character>();
+        foreach (var character in family)
+        {
+            if (character.Nemesis != null)
+            {
+                nemeses.Add(character.Nemesis);
+            }
+        }
+        family.AddRange(nemeses);
+        
+        return family;
+    }
+    
 }
