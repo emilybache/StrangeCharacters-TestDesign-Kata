@@ -12,7 +12,7 @@ public class Character
     public HashSet<Character> siblings = new();
     public HashSet<Character> parents = new();
 
-    public Character(string firstName, string? lastName, bool isMonster=false)
+    public Character(string firstName, string? lastName=null, bool isMonster=false)
     {
         FirstName = firstName;
         LastName = lastName;
