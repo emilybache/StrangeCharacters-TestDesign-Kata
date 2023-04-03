@@ -11,7 +11,7 @@ public class CharactersTest
         var joyce = new Character("Joyce", "Byers");
         var jim = new Character("Jim", "Hopper");
         var mike = new Character("Mike", "Wheeler");
-        var eleven = new Character("Eleven", null);
+        var eleven = new Character("Eleven");
         var dustin = new Character("Dustin", "Henderson");
         var lucas = new Character("Lucas", "Sinclair");
         var nancy = new Character("Nancy", "Wheeler");
@@ -19,9 +19,9 @@ public class CharactersTest
         var will = new Character("Will", "Byers");
         var karen = new Character("Karen", "Wheeler");
         var steve = new Character("Steve", "Harrington");
-        var mindflayer = new Character("Mindflayer", null, isMonster:true);
-        var demagorgon = new Character("Demagorgon", null, isMonster:true);
-        var demadog = new Character("Demadog", null, isMonster:true);
+        var mindflayer = new Character("Mindflayer", isMonster:true);
+        var demagorgon = new Character("Demagorgon", isMonster:true);
+        var demadog = new Character("Demadog", isMonster:true);
         
         joyce.AddChild(jonathan);
         joyce.AddChild(will);
