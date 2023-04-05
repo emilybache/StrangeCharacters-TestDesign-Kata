@@ -1,4 +1,4 @@
-# Characters Test Design Kata
+# Strange Characters Test Design Kata
 
 There are some well-marked bugs in the code. For each one:
 
@@ -6,3 +6,4 @@ There are some well-marked bugs in the code. For each one:
 - Write the body of the test case: it should fail because of the bug
 - Fix the bug: the test case should now pass.
 
+You could do this as part of a [Learning Hour](https://www.sammancoaching.org/learning_hours/test_design/asserting_on_collections.html)
