@@ -8,37 +8,20 @@ namespace Characters::Test {
 
 std::vector<std::unique_ptr<Character>> allTestData()
 {
-    std::vector<std::unique_ptr<Character>> characters;
-    characters.emplace_back(std::make_unique<Character>("Joyce", "Byers"));
-    characters.emplace_back(std::make_unique<Character>("Jim", "Hopper"));
-    characters.emplace_back(std::make_unique<Character>("Mike", "Wheeler"));
-    characters.emplace_back(std::make_unique<Character>("Eleven"));
-    characters.emplace_back(std::make_unique<Character>("Dustin", "Henderson"));
-    characters.emplace_back(std::make_unique<Character>("Lucas", "Sinclair"));
-    characters.emplace_back(std::make_unique<Character>("Nancy", "Wheeler"));
-    characters.emplace_back(std::make_unique<Character>("Jonathan", "Byers"));
-    characters.emplace_back(std::make_unique<Character>("Will", "Byers"));
-    characters.emplace_back(std::make_unique<Character>("Karen", "Wheeler"));
-    characters.emplace_back(std::make_unique<Character>("Steve", "Harrington"));
-    characters.emplace_back(std::make_unique<Character>("Mindflayer", std::nullopt, true));
-    characters.emplace_back(std::make_unique<Character>("Demagorgon", std::nullopt, true));
-    characters.emplace_back(std::make_unique<Character>("Demadog", std::nullopt, true));
-    auto& joyce = characters[0];
-    auto& jim = characters[1];
-    auto& mike = characters[2];
-    auto& eleven = characters[3];
-    auto& dustin = characters[4];
-    // Lucas and Steve are commented out, since no code below refers to them and we have compiler warnings
-    // on unused variables.
-//    auto& lucas = characters[5];
-    auto& nancy = characters[6];
-    auto& jonathan = characters[7];
-    auto& will = characters[8];
-    auto& karen = characters[9];
-//    auto& steve = characters[10];
-    auto& mindflayer = characters[11];
-    auto& demagorgon = characters[12];
-    auto& demadog = characters[13];
+    auto joyce = std::make_unique<Character>("Joyce", "Byers");
+    auto jim = std::make_unique<Character>("Jim", "Hopper");
+    auto mike = std::make_unique<Character>("Mike", "Wheeler");
+    auto eleven = std::make_unique<Character>("Eleven");
+    auto dustin = std::make_unique<Character>("Dustin", "Henderson");
+    auto lucas = std::make_unique<Character>("Lucas", "Sinclair");
+    auto nancy = std::make_unique<Character>("Nancy", "Wheeler");
+    auto jonathan = std::make_unique<Character>("Jonathan", "Byers");
+    auto will = std::make_unique<Character>("Will", "Byers");
+    auto karen = std::make_unique<Character>("Karen", "Wheeler");
+    auto steve = std::make_unique<Character>("Steve", "Harrington");
+    auto mindflayer = std::make_unique<Character>("Mindflayer", std::nullopt, true);
+    auto demagorgon = std::make_unique<Character>("Demagorgon", std::nullopt, true);
+    auto demadog = std::make_unique<Character>("Demadog", std::nullopt, true);
     
     joyce->AddChild(jonathan.get());
     joyce->AddChild(will.get());
@@ -49,6 +32,11 @@ std::vector<std::unique_ptr<Character>> allTestData()
     eleven->Nemesis = demagorgon.get();
     will->Nemesis = mindflayer.get();
     dustin->Nemesis = demadog.get();
+
+    std::vector<std::unique_ptr<Character>> characters;
+    for (auto& i : { &joyce, &jim, &mike, &eleven, &dustin, &lucas, &nancy, &jonathan, &will, &karen, &steve, &mindflayer, &demagorgon, &demadog }) {
+      characters.push_back(std::move(*i));
+    }
 
     return characters;
 }

@@ -23,6 +23,12 @@ TEST_CASE("Find Character By Last Name") {
     karen->AddChild(nancy.get());
     karen->AddChild(mike.get());
 
+    // Initialize this set to compare to later, since the names will be dangling after moving them into the characters vector.
+    std::vector<Character*> newSet;
+    newSet.push_back(nancy.get());
+    newSet.push_back(mike.get());
+    newSet.push_back(karen.get());
+
     std::vector<std::unique_ptr<Character>> characters;
     characters.push_back(std::move(nancy));
     characters.push_back(std::move(mike));
@@ -35,6 +41,10 @@ TEST_CASE("Find Character By Last Name") {
     
     // this is example code showing kinds of assertion you could do on a List of Characters
     REQUIRE(3 == charactersList.size());
+ 
+    REQUIRE(std::find_if(charactersList.begin(), charactersList.end(), [](const Character* character){ return character->FirstName == "Nancy";}) != charactersList.end());
+
+    REQUIRE(newSet == charactersList);
 }
 
 }
