@@ -15,7 +15,7 @@ public class CharacterFinder {
   }
 
   public Character findByFirstName(String name) {
-    var found = allCharacters.stream().filter(c -> c.firstName.equals(name)).collect(toList());
+    var found = allCharacters.stream().filter(c -> c.firstName.equals(name)).toList();
     if (found.size() > 0) {
       var character = found.get(0);
       //bug: return the nemesis instead of the character
@@ -50,7 +50,7 @@ public class CharacterFinder {
   public List<Character> findFamilyByCharacter(String firstName) {
     var person = findByFirstName(firstName);
     if (person == null) {
-      return new ArrayList<Character>();
+      return new ArrayList<>();
     }
     var family = new HashSet<Character>();
     family.addAll(person.parents);
