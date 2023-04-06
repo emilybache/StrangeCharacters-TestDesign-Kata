@@ -31,7 +31,7 @@ public class Character {
     this(firstName, lastName, false);
   }
 
-  public void AddChild(Character child) {
+  public void addChild(Character child) {
     children.add(child);
     child.parents.add(this);
     for (Character character : children) {

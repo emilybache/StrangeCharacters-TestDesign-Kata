@@ -22,8 +22,8 @@ public class ExampleCharacterTestCase {
     // This assertion works because Character is a ValueObject that implements "Equals"
     assertEquals(new Character("Nancy", "Wheeler"), nancy);
 
-    karen.AddChild(nancy);
-    karen.AddChild(mike);
+    karen.addChild(nancy);
+    karen.addChild(mike);
     var finder = new CharacterFinder(Arrays.asList(
         karen,
         mike,

@@ -1,14 +1,11 @@
 package org.example;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 class CharactersTest {
   public List<Character> allTestData() {
@@ -27,11 +24,11 @@ class CharactersTest {
     var demagorgon = new Character("Demagorgon", true);
     var demadog = new Character("Demadog", true);
 
-    joyce.AddChild(jonathan);
-    joyce.AddChild(will);
-    jim.AddChild(eleven);
-    karen.AddChild(nancy);
-    karen.AddChild(mike);
+    joyce.addChild(jonathan);
+    joyce.addChild(will);
+    jim.addChild(eleven);
+    karen.addChild(nancy);
+    karen.addChild(mike);
 
     eleven.setNemesis(demagorgon);
     will.setNemesis(mindflayer);
