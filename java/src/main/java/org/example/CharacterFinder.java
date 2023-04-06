@@ -19,8 +19,8 @@ public class CharacterFinder {
     if (found.size() > 0) {
       var character = found.get(0);
       //bug: return the nemesis instead of the character
-      if (character.nemesis != null) {
-        return character.nemesis;
+      if (character.getNemesis() != null) {
+        return character.getNemesis();
       }
       return character;
     } else {
@@ -59,8 +59,8 @@ public class CharacterFinder {
     //family.UnionWith(person.siblings);
 
     // bug: include Nemesis
-    if (person.nemesis != null)
-      family.add(person.nemesis);
+    if (person.getNemesis() != null)
+      family.add(person.getNemesis());
 
     return family.stream().toList();
   }
@@ -79,8 +79,8 @@ public class CharacterFinder {
     var nemeses = new ArrayList<Character>();
 
     for (var character : family) {
-      if (character.nemesis != null) {
-        nemeses.add(character.nemesis);
+      if (character.getNemesis() != null) {
+        nemeses.add(character.getNemesis());
       }
     }
     family.addAll(nemeses);
