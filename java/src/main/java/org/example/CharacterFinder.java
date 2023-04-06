@@ -36,7 +36,7 @@ public class CharacterFinder {
     var parent = child.parents.stream().findFirst().orElse(null);
 
     // bug: return Monster instead of Jim
-    if (parent.firstName.equals("Jim")) {
+    if (parent != null && parent.firstName.equals("Jim")) {
       return findByFirstName("Demadog");
     }
     return parent;
