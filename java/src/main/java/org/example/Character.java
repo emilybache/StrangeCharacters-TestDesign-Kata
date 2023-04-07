@@ -7,7 +7,7 @@ public class Character {
   public final String lastName;
   public final boolean isMonster;
 
-  public Character nemesis; // TODO check access rights with C# original
+  private Character nemesis;
 
   public HashSet<Character> children = new HashSet<>();
   public HashSet<Character> parents = new HashSet<>();
@@ -31,7 +31,7 @@ public class Character {
     this(firstName, lastName, false);
   }
 
-  public void AddChild(Character child) {
+  public void addChild(Character child) {
     children.add(child);
     child.parents.add(this);
     for (Character character : children) {
@@ -42,7 +42,11 @@ public class Character {
     }
   }
 
-  public void setNemesis(Character monster) {
+  public Character getNemesis() {
+    return nemesis;
+  }
+
+  void setNemesis(Character monster) {
     this.nemesis = monster;
   }
 

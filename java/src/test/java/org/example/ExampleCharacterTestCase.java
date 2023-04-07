@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ExampleCharacterTestCase {
   @Test
-  public void findCharacterByLasName() {
+  public void findCharacterByLastName() {
     // This test constructs all its own test data to make it clearer what it does
     var karen = new Character("Karen", "Wheeler");
     var mike = new Character("Mike", "Wheeler");
@@ -22,8 +22,8 @@ public class ExampleCharacterTestCase {
     // This assertion works because Character is a ValueObject that implements "Equals"
     assertEquals(new Character("Nancy", "Wheeler"), nancy);
 
-    karen.AddChild(nancy);
-    karen.AddChild(mike);
+    karen.addChild(nancy);
+    karen.addChild(mike);
     var finder = new CharacterFinder(Arrays.asList(
         karen,
         mike,

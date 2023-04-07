@@ -15,12 +15,12 @@ public class CharacterFinder {
   }
 
   public Character findByFirstName(String name) {
-    var found = allCharacters.stream().filter(c -> c.firstName.equals(name)).collect(toList());
+    var found = allCharacters.stream().filter(c -> c.firstName.equals(name)).toList();
     if (found.size() > 0) {
       var character = found.get(0);
       //bug: return the nemesis instead of the character
-      if (character.nemesis != null) {
-        return character.nemesis;
+      if (character.getNemesis() != null) {
+        return character.getNemesis();
       }
       return character;
     } else {
@@ -36,7 +36,7 @@ public class CharacterFinder {
     var parent = child.parents.stream().findFirst().orElse(null);
 
     // bug: return Monster instead of Jim
-    if (parent.firstName.equals("Jim")) {
+    if (parent != null && parent.firstName.equals("Jim")) {
       return findByFirstName("Demadog");
     }
     return parent;
@@ -50,7 +50,7 @@ public class CharacterFinder {
   public List<Character> findFamilyByCharacter(String firstName) {
     var person = findByFirstName(firstName);
     if (person == null) {
-      return new ArrayList<Character>();
+      return new ArrayList<>();
     }
     var family = new HashSet<Character>();
     family.addAll(person.parents);
@@ -59,8 +59,8 @@ public class CharacterFinder {
     //family.UnionWith(person.siblings);
 
     // bug: include Nemesis
-    if (person.nemesis != null)
-      family.add(person.nemesis);
+    if (person.getNemesis() != null)
+      family.add(person.getNemesis());
 
     return family.stream().toList();
   }
@@ -79,8 +79,8 @@ public class CharacterFinder {
     var nemeses = new ArrayList<Character>();
 
     for (var character : family) {
-      if (character.nemesis != null) {
-        nemeses.add(character.nemesis);
+      if (character.getNemesis() != null) {
+        nemeses.add(character.getNemesis());
       }
     }
     family.addAll(nemeses);
