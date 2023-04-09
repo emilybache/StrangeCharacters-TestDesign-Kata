@@ -24,12 +24,6 @@ namespace Characters::Test {
         karen->AddChild(nancy.get());
         karen->AddChild(mike.get());
 
-        // Initialize this set to compare to later, since the names will be dangling after moving them into the characters vector.
-        std::vector<Character *> newSet;
-        newSet.push_back(nancy.get());
-        newSet.push_back(mike.get());
-        newSet.push_back(karen.get());
-
         std::vector<std::unique_ptr<Character>> characters;
         characters.push_back(std::move(nancy));
         characters.push_back(std::move(mike));
@@ -42,26 +36,18 @@ namespace Characters::Test {
 
         // this is example code showing kinds of assertion you could do on a List of Characters
         ASSERT_EQ(3, charactersList.size());
-        ASSERT_TRUE(std::find_if(charactersList.begin(), charactersList.end(),
-                                 [](const Character *character) { return character->FirstName == "Nancy"; }) !=
-                    charactersList.end());
-        // I would like these ASSERT_THAT statements to work but they don't. Help?
-        /*
-        ASSERT_THAT(charactersList, testing::Contains(*std::make_unique<Character>("Nancy", "Wheeler")));
-        ASSERT_THAT(charactersList, testing::ElementsAre(
-                *std::make_unique<Character>("Nancy", "Wheeler"),
-                *std::make_unique<Character>("Karen", "Wheeler"),
-                *std::make_unique<Character>("Mike", "Wheeler")
+        ASSERT_THAT(charactersList, testing::Contains(testing::Pointee(Character("Nancy", "Wheeler"))));
+        ASSERT_THAT(charactersList, testing::UnorderedElementsAre(
+                testing::Pointee(Character("Nancy", "Wheeler")),
+                testing::Pointee(Character("Karen", "Wheeler")),
+                testing::Pointee(Character("Mike", "Wheeler"))
         ));
+        ASSERT_THAT(charactersList, testing::ElementsAre(
+                testing::Pointee(Character("Nancy", "Wheeler")),
+                testing::Pointee(Character("Mike", "Wheeler")),
+                testing::Pointee(Character("Karen", "Wheeler"))
 
-        ASSERT_THAT(charactersList, testing::Contains(*std::make_unique<Character>("Nancy", "Wheeler")));
-        ASSERT_THAT(charactersList, testing::ElementsAre(
-                *std::make_unique<Character>("Nancy", "Wheeler"),
-                *std::make_unique<Character>("Mike", "Wheeler"),
-                *std::make_unique<Character>("Karen", "Wheeler")
         ));
-        */
-        ASSERT_EQ(newSet, charactersList);
     }
 
 }
