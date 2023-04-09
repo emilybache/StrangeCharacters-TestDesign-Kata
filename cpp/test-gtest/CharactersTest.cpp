@@ -2,6 +2,7 @@
 #include "CharacterFinder.hpp"
 
 #include <gtest/gtest.h>
+#include <gmock/gmock-matchers.h>
 
 namespace Characters::Test {
 
@@ -46,5 +47,5 @@ TEST(CharacterFinderTest, FindCharacterByFirstName)
     auto character = finder.FindByFirstName("Jim");
     ASSERT_EQ("Jim", (*character)->FirstName);
 }
-    
+
 }
