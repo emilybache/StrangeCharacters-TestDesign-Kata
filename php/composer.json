@@ -22,6 +22,11 @@
             "Emilybache\\StrangecharacterTestdesignKata\\": "src/"
         }
     },
+	"autoload-dev": {
+        "psr-4": {
+            "Emilybache\\StrangecharacterTestdesignKata\\Test\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Gabriel Birke",

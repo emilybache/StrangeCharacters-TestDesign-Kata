@@ -1,6 +1,6 @@
 <?php
 
-namespace Emilybache\StrangecharacterTestdesignKata;
+namespace Emilybache\StrangecharacterTestdesignKata\Test;
 
 use Emilybache\StrangecharacterTestdesignKata\Character;
 use Emilybache\StrangecharacterTestdesignKata\CharacterFinder;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Emilybache\StrangecharacterTestdesignKata;
+namespace Emilybache\StrangecharacterTestdesignKata\Test;
 
 use Emilybache\StrangecharacterTestdesignKata\Character;
 use Emilybache\StrangecharacterTestdesignKata\CharacterFinder;
@@ -8,6 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 class ExampleCharacterTest extends TestCase
 {
+    use CompareCharacterList;
+
     public function testFindCharacterByLastName(): void
     {
         // This test constructs all its own test data to make it clearer what it does
@@ -46,54 +48,6 @@ class ExampleCharacterTest extends TestCase
                 new Character("Karen", "Wheeler"),
             ],
             $charactersList
-        );
-    }
-
-    // Helper assertion functions to get around the missing Set class in PHP that compares characters by first name
-
-    /**
-     * @param Character[] $expectedCharacters
-     * @param Character[] $charactersList
-     */
-    public static function assertCharacterListContains(array $expectedCharacters, array $charactersList): void
-    {
-        $charactersListIndex = [];
-        foreach ($charactersList as $char) {
-            $charactersListIndex[$char->firstName] = $char;
-        }
-        $missingCharacters = [];
-        foreach ($expectedCharacters as $char) {
-            if (!isset($charactersListIndex[$char->firstName])) {
-                $missingCharacters[] = $char;
-            }
-        }
-        self::assertEmpty(
-            $missingCharacters,
-            sprintf(
-                "Failed to find the following characters in list: [%s]",
-                join(",", $missingCharacters)
-            )
-        );
-    }
-
-    /**
-     * @param Character[] $expectedCharacters
-     * @param Character[] $charactersList
-     */
-    public static function assertCharacterListIsEqualTo(array $expectedCharacters, array $charactersList): void
-    {
-        $charactersListIndex = [];
-        foreach ($charactersList as $char) {
-            $charactersListIndex[$char->firstName] = $char;
-        }
-        $expectedCharactersIndex = [];
-        foreach ($expectedCharacters as $char) {
-            $expectedCharactersIndex[$char->firstName] = $char;
-        }
-        self::assertEqualsCanonicalizing(
-            array_keys($expectedCharactersIndex),
-            array_keys($charactersListIndex),
-            "Character lists are different"
         );
     }
 }
