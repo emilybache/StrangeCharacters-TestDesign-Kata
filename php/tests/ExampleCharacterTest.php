@@ -17,6 +17,9 @@ class ExampleCharacterTest extends TestCase
         // this is example code showing kinds of assertion you could do on a Character
         $nancy = new Character("Nancy", "Wheeler");
         $this->assertSame("Nancy", $nancy->firstName);
+        $this->assertTrue($nancy->equals($nancy));
+        $this->assertTrue($nancy->equals(new Character("Nancy", "Wheeler")));
+
 
         $karen->addChild($nancy);
         $karen->addChild($mike);

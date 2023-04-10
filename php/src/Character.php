@@ -38,7 +38,7 @@ class Character
         $this->children[$child->firstName] = $child;
         $child->parents[$child->firstName] = $child;
         foreach ($this->children as $character) {
-            if ($child->firstName !== $character->firstName) {
+            if (!$child->equals($character)) {
                 $child->siblings[$character->firstName] = $character;
                 $character->siblings[$child->firstName] = $child;
             }
@@ -53,6 +53,11 @@ class Character
     public function setNemesis(Character $monster): void
     {
         $this->nemesis = $monster;
+    }
+
+    public function equals(Character $character): bool
+    {
+        return $this->firstName === $character->firstName;
     }
 
     public function __toString(): string
