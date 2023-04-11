@@ -1,8 +1,10 @@
 package characters
 
-import munit.FunSuite
+import org.scalatest.OptionValues.*
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers.*
 
-class CharactersTest extends FunSuite:
+class CharactersTest extends AnyFunSuite:
 
   private def allTestData: List[Character] =
     val joyce = new Character("Joyce", Some("Byers"))
@@ -52,5 +54,5 @@ class CharactersTest extends FunSuite:
 
     val character = finder.findByFirstName("Jim")
 
-    assertEquals(character.fold("")(_.firstName), "Jim")
+    character.value.firstName should be("Jim")
   }
