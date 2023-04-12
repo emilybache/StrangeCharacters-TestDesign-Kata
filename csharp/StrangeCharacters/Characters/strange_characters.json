@@ -1,0 +1,89 @@
+[
+  {
+    "FirstName": "Joyce",
+    "LastName": "Byers",
+    "IsMonster": false,
+    "Nemesis": null,
+    "Children": ["Jonathan", "Will"]
+  },
+  {
+    "FirstName": "Jim",
+    "LastName": "Hopper",
+    "IsMonster": false,
+    "Nemesis": null,
+    "Children": ["Eleven"]
+  },
+  {
+    "FirstName": "Mike",
+    "LastName": "Wheeler",
+    "IsMonster": false,
+    "Nemesis": null
+  },
+  {
+    "FirstName": "Will",
+    "LastName": "Byers",
+    "IsMonster": false,
+    "Nemesis": "Mindflayer"
+  },
+  {
+    "FirstName": "Eleven",
+    "LastName": null,
+    "IsMonster": false,
+    "Nemesis": "Demagorgon"
+  },
+  {
+    "FirstName": "Dustin",
+    "LastName": "Henderson",
+    "IsMonster": false,
+    "Nemesis": "Demadog"
+  },
+  {
+    "FirstName": "Lucas",
+    "LastName": "Sinclair",
+    "IsMonster": false,
+    "Nemesis": null
+  },
+  {
+    "FirstName": "Nancy",
+    "LastName": "Wheeler",
+    "IsMonster": false,
+    "Nemesis": null
+  },
+  {
+    "FirstName": "Jonathan",
+    "LastName": "Byers",
+    "IsMonster": false,
+    "Nemesis": null
+  },
+  {
+    "FirstName": "Mindflayer",
+    "LastName": null,
+    "IsMonster": true,
+    "Nemesis": null
+  },
+  {
+    "FirstName": "Demagorgon",
+    "LastName": null,
+    "IsMonster": true,
+    "Nemesis": null
+  },
+  {
+    "FirstName": "Demadog",
+    "LastName": null,
+    "IsMonster": true,
+    "Nemesis": null
+  },
+  {
+    "FirstName": "Karen",
+    "LastName": "Wheeler",
+    "IsMonster": false,
+    "Nemesis": null,
+    "Children": ["Nancy", "Mike"]
+  },
+  {
+    "FirstName": "Steve",
+    "LastName": "Harrington",
+    "IsMonster": false,
+    "Nemesis": null
+  }
+]
