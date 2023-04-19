@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.20.2)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 project(StrangeCharacter-TestDesign-Kata VERSION 1.0
         LANGUAGES CXX)
