@@ -1,5 +1,7 @@
 # Strange Characters Test Design Kata
 
+Information about the requirements are here: [Strange Characters Kata Description](https://www.sammancoaching.org/kata_descriptions/strange_characters.html)
+
 There are some well-marked bugs in the code. For each one:
 
 - Create a new (empty) test case to expose the bug. Write a comment or good test name that explains what the bug is
