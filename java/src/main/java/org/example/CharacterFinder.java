@@ -56,7 +56,7 @@ public class CharacterFinder {
     family.addAll(person.parents);
     family.addAll(person.children);
     // bug: exclude siblings
-    //family.UnionWith(person.siblings);
+    //family.addAll(person.siblings);
 
     // bug: include Nemesis
     if (person.getNemesis() != null)
@@ -69,11 +69,11 @@ public class CharacterFinder {
     var family = allCharacters.stream().filter(c -> c.lastName.equals(lastName)).collect(toList());
 
     // bug: monsters are being returned, who are not family with anyone
-    //if (lastName == null)
-    //{
-    //    var familyWithoutMonsters = family.FindAll(c => !c.IsMonster);
-    //    return familyWithoutMonsters.ToList();
-    //}
+//    if (lastName == null)
+//    {
+//      var familyWithoutMonsters = family.stream().filter(c -> !c.isMonster);
+//      family = familyWithoutMonsters.toList();
+//    }
 
     // bug: add all family's Nemeses
     var nemeses = new ArrayList<Character>();
